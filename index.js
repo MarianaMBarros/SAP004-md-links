@@ -44,11 +44,11 @@ module.exports = (path, options) => {
 
   const validLink = (item) => {
     return axios.get(item.href)
-      .then(response => {
+      .then(() => {
         item.valid = "ok";
         return item;
       })
-      .catch(error => {
+      .catch(() => {
         item.valid = "fail";
         return item
       });
