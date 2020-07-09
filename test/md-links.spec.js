@@ -1,15 +1,13 @@
 const mdLinks = require('../index')
 
 
-// describe('mdLinks', () => {
+describe('mdLinks', () => {
 
-//   it('should...', () => {
-//     console.log('FIX ME!');
-//   });
+  it('should...', () => {
+    console.log('FIX ME!');
+  });
 
-// });
-
-
+});
 
 
 // mdLinks('./README.md')

@@ -34,13 +34,17 @@ module.exports = (path, options) => {
           }).catch((error) => {
             console.error('error', error);
           });
+        } else if (options && options.stats === true) {
+          resolve({
+            Total: array.length,
+            Unique: array.length
+          })
         } else {
           resolve(array)
         }
       })
     });
   }
-
 
   const validLink = (item) => {
     return axios.get(item.href)
