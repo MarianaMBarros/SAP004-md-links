@@ -22,7 +22,31 @@ module.exports = (path, options) => {
           array.push({ href: text[2], text: text[1], file: path })
         }
 
-        if (options && options.validate === true) {
+        if (options && options.stats === true && options.validate === true) {
+          let promises = []
+
+          for (let item of array) {
+            promises.push(validLink(item))
+          }
+
+          Promise.all(promises).then((data) => {
+            const urls = data.map((curr) => {
+              return curr.href;
+            });
+            const broken = data.filter(item => {
+              return item.valid === "fail";
+            })
+            resolve({
+              Total: data.length,
+              Unique: [...new Set(urls)].length,
+              Broken: broken.length
+            })
+          }).catch((error) => {
+            console.error('error', error);
+          });
+
+
+        } else if (options && options.validate === true) {
           let promises = []
 
           for (let item of array) {
@@ -35,9 +59,12 @@ module.exports = (path, options) => {
             console.error('error', error);
           });
         } else if (options && options.stats === true) {
+          const urls = array.map((curr) => {
+            return curr.href;
+          });
           resolve({
             Total: array.length,
-            Unique: array.length
+            Unique: [...new Set(urls)].length
           })
         } else {
           resolve(array)
@@ -47,13 +74,15 @@ module.exports = (path, options) => {
   }
 
   const validLink = (item) => {
-    return axios.get(item.href)
-      .then(() => {
-        item.valid = "ok";
+    return axios.get(item.href, { validateStatus: () => true })
+      .then((response) => {
+        item.valid = response.statusText === "OK" ? "ok" : "fail";
+        item.statusCode = response.status;
         return item;
       })
       .catch(() => {
         item.valid = "fail";
+        item.statusCode = "404"
         return item
       });
   }
