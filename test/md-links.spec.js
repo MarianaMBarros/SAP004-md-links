@@ -3,21 +3,15 @@ const mdLinks = require('../index')
 
 describe('mdLinks', () => {
 
-  it('should...', () => {
-    console.log('FIX ME!');
+  it('Deve retornar somente os links quando não informada as opções', () => {
+    return mdLinks('./test/README.md').then((data) => {
+      expect(data).toEqual([{
+        file: './test/README.md',
+        href: 'https://developer.mozilla.org/pt-BR/docs/Glossario/Callback_function',
+        text: 'Uso de callbacks'
+      }])
+    })
   });
 
 });
 
-
-// mdLinks('./README.md')
-//   .then(result => console.log(result))
-//   .catch(error => console.log("promise rejeitada: " + error));
-
-// mdLinks('./README.md', { validate: true })
-//   .then(result => console.log(result))
-//   .catch(error => console.log("promise rejeitada: " + error));
-
-// mdLinks('./')
-//   .then(result => console.log(result))
-//   .catch(error => console.log("promise rejeitada: " + error));

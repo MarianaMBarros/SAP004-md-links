@@ -40,7 +40,7 @@ Após a instalação da biblioteca, poderá utilizar através de linhas de coman
 `md-links <path-to-file>`
 ```sh
 $ md-links ./some/example.md
-Retorno: ./some/example.md http://algo.com/2/3/ Link de algo
+./some/example.md http://algo.com/2/3/ Link de algo
 ```
 
 
@@ -49,7 +49,7 @@ Se passamos a opção `--validate`, o módulo deve trazer se o link encontrado �
 `md-links <path-to-file> --validate`
 ```sh
 $ md-links ./some/example.md --validate
-Retorno : ./some/example.md http://algo.com/2/3/ ok 200 Link de algo
+./some/example.md http://algo.com/2/3/ ok 200 Link de algo
 ```
 
 Se passamos a opção `--stats` o output (saída) será um texto com estatísticas.
@@ -57,7 +57,6 @@ Se passamos a opção `--stats` o output (saída) será um texto com estatístic
 `md-links <path-to-file> --stats`
 ```sh
 $ md-links ./some/example.md --stats
-Retorno:
 Total: 3
 Unique: 3
 ```
@@ -67,7 +66,6 @@ Também podemos combinar `--stats` e `--validate` para obter estatísticas que n
 `md-links <path-to-file> --stats --validate`
 ```sh
 $ md-links ./some/example.md --stats --validate
-Retorno:
 Total: 3
 Unique: 3
 Broken: 1
