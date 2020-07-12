@@ -3,7 +3,7 @@ const mdLinks = require('./index')
 //   .then(result => console.log(result))
 //   .catch(error => console.log("promise rejeitada: " + error));
 
-mdLinks('./test/README.md', { validate: true })
+mdLinks('./test/README.md', { stats: true })
   .then(result => console.log(result))
   .catch(error => console.log("promise rejeitada: " + error));
 

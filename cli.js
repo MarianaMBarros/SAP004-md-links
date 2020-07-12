@@ -14,10 +14,18 @@ let path = program.args[0];
 
 mdLinks(path, { validate: program.validate, stats: program.stats })
   .then(result => {
-    for (let item of result) {
-      console.log(`${item.file} ${item.href} ${item.valid} ${item.statusCode} ${item.text} `)
+    if (program.validate === true && program.stats === true) {
+      console.log(`Total: ${result.Total}`)
+      console.log(`Unique: ${result.Unique}`)
+      console.log(`Broken: ${result.Broken}`)
+    } else if (program.stats === true) {
+      console.log(`Total: ${result.Total}`)
+      console.log(`Unique: ${result.Unique}`)
+    } else {
+      for (let item of result) {
+        console.log(`${item.file} ${item.href} ${item.valid} ${item.statusCode} ${item.text} `)
+      }
     }
   })
   .catch(error => console.log("promise rejeitada: " + error));
-
 
