@@ -19,7 +19,7 @@ module.exports = (path, options) => {
         const singleMatch = /\[([^\[]+)\]\((.*)\)/
         for (let item of matches) {
           let text = singleMatch.exec(item)
-          array.push({ href: text[2], text: text[1], file: path })
+          array.push({ href: text[2], text: text[1], file: file })
         }
 
         if (options && options.stats === true && options.validate === true) {
@@ -98,7 +98,8 @@ module.exports = (path, options) => {
         let promises = []
 
         for (let item of files) {
-          promises.push(readFile(item));
+          let p = folder + item;
+          promises.push(readFile(p));
         }
         Promise.all(promises).then((data) => {
           resolve(data);
@@ -110,8 +111,8 @@ module.exports = (path, options) => {
     });
   }
 
-  const stats = fs.statSync(path)
-  if (stats.isDirectory()) {
+  const statsPath = fs.statSync(path)
+  if (statsPath.isDirectory()) {
     return readFolder(path);
   } else {
     return readFile(path);

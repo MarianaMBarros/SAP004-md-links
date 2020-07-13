@@ -11,7 +11,8 @@ describe('mdLinks', () => {
           { file: './test/README.md', href: 'http://www.oooo.lo.lo', text: 'erro' },
         ])
       })
-  }); it('Comando --stats', () => {
+  });
+  it('Comando --stats ou -s', () => {
     return mdLinks('./test/README.md', { stats: true })
       .then((data) => {
         expect(data).toEqual({
@@ -19,7 +20,7 @@ describe('mdLinks', () => {
         })
       })
   });
-  it('Comando --validate', () => {
+  it('Comando --validate ou -v', () => {
     return mdLinks('./test/README.md', { validate: true })
       .then((data) => {
         expect(data).toEqual([
@@ -30,8 +31,8 @@ describe('mdLinks', () => {
 
         ]);
       })
-  });
-  it('Comando --stats --validate', () => {
+  }, 6000);
+  it('Comando --stats --validate ou -s -v', () => {
     return mdLinks('./test/README.md', { validate: true, stats: true })
       .then((data) => {
         expect(data).toEqual({
@@ -39,6 +40,16 @@ describe('mdLinks', () => {
         })
       })
   });
-
+  it('pasta', () => {
+    return mdLinks('./test/')
+      .then((data) => {
+        expect(data).toEqual([
+          { file: './test/README.md', href: 'https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/', text: 'criação de uma Promise' },
+          { file: './test/README.md', href: 'https://www.freecodecamp.org/news/how-to-build-a-quiz-app-using-react-and-typescript/', text: 'fórum da comunidade' },
+          { file: './test/README.md', href: 'https://www.freecodecamp.org/news/how-to-build-a-quiz-app-using-react-and-typescript/', text: 'fórum da comunidade' },
+          { file: './test/README.md', href: 'http://www.oooo.lo.lo', text: 'erro' },
+        ])
+      })
+  });
 });
 

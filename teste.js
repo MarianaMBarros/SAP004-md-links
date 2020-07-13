@@ -1,6 +1,6 @@
 const mdLinks = require('./index');
 
-mdLinks('./test/README.md', { validate: true })
+mdLinks('./test/', { validate: true })
   .then(result => {
     console.log(result);
   })
