@@ -4,6 +4,7 @@ const paths = require('path');
 
 module.exports = (path, options) => {
 
+  let array = [];
   const readFile = (file) => {
     return new Promise((resolve, reject) => {
       fs.readFile(file, 'utf8', (error, data) => {
@@ -11,7 +12,6 @@ module.exports = (path, options) => {
           reject(error);
           return;
         }
-        let array = [];
         const regexMdLinks = /\[([^\[]+)\](\(http.*\))/gm
 
         const matches = data.match(regexMdLinks)
@@ -42,7 +42,7 @@ module.exports = (path, options) => {
               Broken: broken.length
             })
           }).catch((error) => {
-            console.error('error', error);
+            reject(error);
           });
 
 
@@ -56,7 +56,7 @@ module.exports = (path, options) => {
           Promise.all(promises).then((data) => {
             resolve(data)
           }).catch((error) => {
-            console.error('error', error);
+            reject(error);
           });
         } else if (options && options.stats === true) {
           const urls = array.map((curr) => {
@@ -102,7 +102,7 @@ module.exports = (path, options) => {
           promises.push(readFile(p));
         }
         Promise.all(promises).then((data) => {
-          resolve(data);
+          resolve(array);
         }).catch((error) => {
           reject(error);
         })

@@ -32,7 +32,9 @@ Projeto desenvolvido durante o bootcamp da Laboratória.
 ## 3. Instalação
 A utilização da biblioteca poderá ser realizada através da instalação Node.js em seu computador e pelo comando em seu terminal:
 
-`comando de instalação`
+`npm -i -g MarianaMBarros/SAP004-md-links`
+Para instalação local.
+`npm -i  MarianaMBarros/SAP004-md-links`
 
 
 ## 4. Utilização e Retorno
@@ -45,17 +47,17 @@ $ md-links ./some/example.md
 ```
 
 
-Se passamos a opção `--validate`, o módulo deve trazer se o link encontrado é valido.
+Se passamos a opção `--validate ou -v`, o módulo deve trazer se o link encontrado é valido.
 
-`md-links <path-to-file> --validate`
+`md-links <path-to-file> --validate ou -v`
 ```sh
 $ md-links ./some/example.md --validate
 ./some/example.md http://algo.com/2/3/ ok 200 Link de algo
 ```
 
-Se passamos a opção `--stats` o output (saída) será um texto com estatísticas.
+Se passamos a opção `--stats ou -s` o output (saída) será um texto com estatísticas.
 
-`md-links <path-to-file> --stats`
+`md-links <path-to-file> --stats ou -s`
 ```sh
 $ md-links ./some/example.md --stats
 Total: 3
@@ -64,7 +66,7 @@ Unique: 3
 
 Também podemos combinar `--stats` e `--validate` para obter estatísticas que necessitem dos resultados da validação.
 
-`md-links <path-to-file> --stats --validate`
+`md-links <path-to-file> --stats --validate ou -s -v`
 ```sh
 $ md-links ./some/example.md --stats --validate
 Total: 3
