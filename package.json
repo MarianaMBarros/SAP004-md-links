@@ -21,7 +21,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose --coverage --detectOpenHandles",
+    "open-coverage-report": "opener ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",

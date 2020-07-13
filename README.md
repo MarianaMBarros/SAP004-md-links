@@ -31,7 +31,8 @@ Projeto desenvolvido durante o bootcamp da Laboratória.
 
 ## 3. Instalação
 A utilização da biblioteca poderá ser realizada através da instalação Node.js em seu computador e pelo comando em seu terminal:
-**comando
+
+`comando de instalação`
 
 
 ## 4. Utilização e Retorno
